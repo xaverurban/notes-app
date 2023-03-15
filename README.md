@@ -1,4 +1,4 @@
-# employee-app-1
+# Notes App 
 Notes App for storing notes
 
 
