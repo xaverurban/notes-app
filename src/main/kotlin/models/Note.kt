@@ -5,7 +5,7 @@ data class Note(
 
     var notePriority: Int,
     var noteCategory: String,
-    val isNoteArchived :Boolean)
+    var isNoteArchived :Boolean)
 
 {
 }
