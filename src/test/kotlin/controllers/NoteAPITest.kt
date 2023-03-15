@@ -4,6 +4,7 @@ import models.Note
 import org.junit.jupiter.api.*
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
+import persistence.JSONSerializer
 import persistence.XMLSerializer
 import java.io.File
 import kotlin.test.assertEquals
@@ -250,6 +251,44 @@ class NoteAPITest {
             assertEquals(storingNotes.findNote(1), loadedNotes.findNote(1))
             assertEquals(storingNotes.findNote(2), loadedNotes.findNote(2))
         }
+        @Test
+        fun `saving and loading an empty collection in JSON doesn't crash app`() {
+            // Saving an empty notes.json file.
+            val storingNotes = NoteAPI(JSONSerializer(File("notes.json")))
+            storingNotes.store()
+
+            //Loading the empty notes.json file into a new object
+            val loadedNotes = NoteAPI(JSONSerializer(File("notes.json")))
+            loadedNotes.load()
+
+            //Comparing the source of the notes (storingNotes) with the json loaded notes (loadedNotes)
+            assertEquals(0, storingNotes.numberOfNotes())
+            assertEquals(0, loadedNotes.numberOfNotes())
+            assertEquals(storingNotes.numberOfNotes(), loadedNotes.numberOfNotes())
+        }
+
+        @Test
+        fun `saving and loading an loaded collection in JSON doesn't loose data`() {
+            // Storing 3 notes to the notes.json file.
+            val storingNotes = NoteAPI(JSONSerializer(File("notes.json")))
+            storingNotes.add(testApp!!)
+            storingNotes.add(swim!!)
+            storingNotes.add(summerHoliday!!)
+            storingNotes.store()
+
+            //Loading notes.json into a different collection
+            val loadedNotes = NoteAPI(JSONSerializer(File("notes.json")))
+            loadedNotes.load()
+
+            //Comparing the source of the notes (storingNotes) with the json loaded notes (loadedNotes)
+            assertEquals(3, storingNotes.numberOfNotes())
+            assertEquals(3, loadedNotes.numberOfNotes())
+            assertEquals(storingNotes.numberOfNotes(), loadedNotes.numberOfNotes())
+            assertEquals(storingNotes.findNote(0), loadedNotes.findNote(0))
+            assertEquals(storingNotes.findNote(1), loadedNotes.findNote(1))
+            assertEquals(storingNotes.findNote(2), loadedNotes.findNote(2))
+        }
+
     }
 
 }
