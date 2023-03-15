@@ -8,4 +8,5 @@ data class Note(
     var isNoteArchived :Boolean)
 
 {
+    constructor() : this("", 0, "", false)
 }
