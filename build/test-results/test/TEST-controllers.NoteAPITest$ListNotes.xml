@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="controllers.NoteAPITest$ListNotes" tests="2" skipped="0" failures="0" errors="0" timestamp="2023-03-02T16:49:37" hostname="XAVER" time="0.015">
-  <properties/>
-  <testcase name="listAllNotes returns No Notes Stored message when ArrayList is empty()" classname="controllers.NoteAPITest$ListNotes" time="0.012"/>
-  <testcase name="listAllNotes returns Notes when ArrayList has notes stored()" classname="controllers.NoteAPITest$ListNotes" time="0.002"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
