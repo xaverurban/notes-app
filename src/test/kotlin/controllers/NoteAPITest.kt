@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import persistence.JSONSerializer
 import persistence.XMLSerializer
+import persistence.YAMLSerializer
 import java.io.File
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
@@ -288,7 +289,6 @@ class NoteAPITest {
             assertEquals(storingNotes.findNote(1), loadedNotes.findNote(1))
             assertEquals(storingNotes.findNote(2), loadedNotes.findNote(2))
         }
-
     }
     @Nested
     inner class ArchiveNotes {

@@ -1,0 +1,6 @@
+- !!models.Note {noteArchived: false, noteCategory: Work, notePriority: 4, noteTitle: Test
+    App}
+- !!models.Note {noteArchived: true, noteCategory: Hobby, notePriority: 3, noteTitle: Swim
+    - Pool}
+- !!models.Note {noteArchived: false, noteCategory: Holiday, notePriority: 1, noteTitle: Summer
+    Holiday to France}
