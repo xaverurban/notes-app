@@ -17,19 +17,13 @@ class NoteAPI(serializerType: Serializer) {
 
 
 
-    fun listActiveNotes(): String {
-        return if (numberOfActiveNotes() == 0) {
+    fun listActiveNotes(): String =
+        if (notes.isEmpty())
             "No active notes stored"
-        } else {
-            var listOfActiveNotes = ""
-            for (note in notes) {
-                if (!note.isNoteArchived) {
-                    listOfActiveNotes += "${notes.indexOf(note)}: $note \n"
-                }
-            }
-            listOfActiveNotes
-        }
-    }
+         else
+            notes.filter { !it.isNoteArchived }.joinToString(separator = "\n") { note ->
+                    notes.indexOf(note).toString() + ": " + note.toString() }
+
 
     fun listArchivedNotes(): String {
         return if (numberOfArchivedNotes() == 0) {
