@@ -381,5 +381,35 @@ class NoteAPITest {
             assertEquals(0, emptyNotes!!.numberOfNotesByPriority(1))
         }
     }
+ @Nested
+ inner class SearchMethods {
+     @Test
+     fun `search notes by title returns no notes when no notes with that title exists`() {
+         assertEquals(5,populatedNotes!!.numberOfNotes())
+         val searchResuls = populatedNotes!!.searchByTitle("no results expected")
+         assertTrue(searchResuls.isEmpty())
 
+         assertEquals(0,emptyNotes!!.numberOfNotes())
+         assertTrue(emptyNotes!!.searchByTitle("").isEmpty())
+     }
+     @Test
+     fun `search notes by title returns notes when notes with that title exits`() {
+         assertEquals(5,populatedNotes!!.numberOfNotes())
+
+         var searchResults =  populatedNotes!!.searchByTitle("Code App")
+         assertTrue(searchResults.contains("Code App"))
+         assertFalse(searchResults.contains("Test App"))
+
+         searchResults = populatedNotes!!.searchByTitle("App")
+         assertTrue(searchResults.contains("Code App"))
+         assertTrue(searchResults.contains("Test App"))
+         assertFalse(searchResults.contains("Swim - Pool"))
+
+
+         searchResults = populatedNotes!!.searchByTitle("aPp")
+         assertTrue(searchResults.contains("Code App"))
+         assertTrue(searchResults.contains("Test App"))
+         assertFalse(searchResults.contains("Swim - Pool"))
+     }
+ }
 }
