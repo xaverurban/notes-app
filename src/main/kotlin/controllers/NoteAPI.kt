@@ -10,45 +10,29 @@ class NoteAPI(serializerType: Serializer) {
         return notes.add(note)
     }
 
-    fun listAllNotes(): String {
-        return if (notes.isEmpty()) {
-            "No notes stored"
-        } else {
-            var listOfNotes = ""
-            for (i in notes.indices) {
-                listOfNotes += "${i}: ${notes[i]} \n"
-            }
-            listOfNotes
-        }
-    }
+    fun listAllNotes(): String =
+        if  (notes.isEmpty()) "No notes stored"
+        else notes.joinToString (separator = "\n") { note ->
+            notes.indexOf(note).toString() + ": " + note.toString() }
 
-    fun listActiveNotes(): String {
-        return if (numberOfActiveNotes() == 0) {
+
+
+    fun listActiveNotes(): String =
+        if (notes.isEmpty())
             "No active notes stored"
-        } else {
-            var listOfActiveNotes = ""
-            for (note in notes) {
-                if (!note.isNoteArchived) {
-                    listOfActiveNotes += "${notes.indexOf(note)}: $note \n"
-                }
-            }
-            listOfActiveNotes
-        }
-    }
+         else
+            notes.filter { !it.isNoteArchived }.joinToString(separator = "\n") { note ->
+                    notes.indexOf(note).toString() + ": " + note.toString() }
 
-    fun listArchivedNotes(): String {
-        return if (numberOfArchivedNotes() == 0) {
-            "No archived notes stored"
-        } else {
-            var listOfArchivedNotes = ""
-            for (note in notes) {
-                if (note.isNoteArchived) {
-                    listOfArchivedNotes += "${notes.indexOf(note)}: $note \n"
-                }
-            }
-            listOfArchivedNotes
-        }
-    }
+
+    fun listArchivedNotes(): String =
+        if (notes.isEmpty()) "No archived notes stored!"
+         else
+            notes.filter { it.isNoteArchived }.joinToString(separator = "\n")  { note ->
+                    notes.indexOf(note).toString() + ": " + note.toString() }
+
+
+
 
     fun listNotesBySelectedPriority(priority: Int): String {
         return if (notes.isEmpty()) {
