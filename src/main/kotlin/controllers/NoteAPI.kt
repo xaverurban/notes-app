@@ -2,7 +2,7 @@ package controllers
 
 import models.Note
 import persistence.Serializer
-
+import utils.Utilities.isValidListIndex
 class NoteAPI(serializerType: Serializer) {
     private var notes = ArrayList<Note>()
     private var serializer: Serializer = serializerType
@@ -60,11 +60,6 @@ class NoteAPI(serializerType: Serializer) {
         return if (isValidListIndex(index, notes)) {
             notes[index]
         } else null
-    }
-
-    //utility method to determine if an index is valid in a list.
-    private fun isValidListIndex(index: Int, list: List<Any>): Boolean {
-        return (index >= 0 && index < list.size)
     }
 
     fun deleteNote(indexToDelete: Int): Note? {
