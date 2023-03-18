@@ -3,6 +3,8 @@ package controllers
 import models.Note
 import persistence.Serializer
 import utils.Utilities.isValidListIndex
+import java.time.LocalDateTime
+
 class NoteAPI(serializerType: Serializer) {
     private var notes = ArrayList<Note>()
     private var serializer: Serializer = serializerType
@@ -76,6 +78,7 @@ class NoteAPI(serializerType: Serializer) {
             foundNote.noteTitle = note.noteTitle
             foundNote.notePriority = note.notePriority
             foundNote.noteCategory = note.noteCategory
+            foundNote.updateTime = LocalDateTime.now()
             return true
         }
 
@@ -90,6 +93,7 @@ class NoteAPI(serializerType: Serializer) {
             val noteToArchive = notes[indexToArchive]
             if (!noteToArchive.isNoteArchived) {
                 noteToArchive.isNoteArchived = true
+
                 return true
             }
         }
