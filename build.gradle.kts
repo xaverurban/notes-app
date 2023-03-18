@@ -26,6 +26,9 @@ dependencies {
 // https://mvnrepository.com/artifact/org.yaml/snakeyaml
     implementation("org.yaml:snakeyaml:1.29")
 
+// https://mvnrepository.com/artifact/org.fusesource.jansi/jansi
+    implementation("org.fusesource.jansi:jansi:2.4.0")
+
 
 
 }
