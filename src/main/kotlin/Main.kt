@@ -13,6 +13,7 @@ import utils.ValidateInput.readValidPriority
 import java.io.File
 import java.lang.System.exit
 import kotlin.system.exitProcess
+import org.fusesource.jansi.AnsiConsole
 
 //private val noteAPI = NoteAPI()
 //private val noteAPI = NoteAPI(XMLSerializer(File("notes.xml")))
@@ -27,22 +28,23 @@ fun main(args: Array<String>) {
 
 }
 
-fun mainMenu() : Int {
+fun mainMenu(): Int {
     return readNextInt(""" 
+         > ${"\u001B[34m"}----------------------------------
+         > |        ${"\u001B[35m"}Note Keeper App         ${"\u001B[34m"}|
          > ----------------------------------
-         > |        NOTE KEEPER APP         |
+         > | ${"\u001B[32m"}NOTE MENU                      ${"\u001B[34m"}|
+         > |   ${"\u001B[36m"}1) ${"\u001B[32m"}📝 Add a note${"\u001B[34m"}             |          
+         > |   ${"\u001B[36m"}2) ${"\u001B[32m"}📋 List all notes${"\u001B[34m"}         |    
+         > |   ${"\u001B[36m"}3) ${"\u001B[32m"}🖋️ Update a note${"\u001B[34m"}          | 
+         > |   ${"\u001B[36m"}4) ${"\u001B[32m"}🗑️ Delete a note${"\u001B[34m"}          | 
+         > |   ${"\u001B[36m"}5) ${"\u001B[32m"}📦 Archive Note${"\u001B[34m"}           | 
+         > |   ${"\u001B[36m"}6) ${"\u001B[32m"}🔍 Search Note${"\u001B[34m"}            |  
+         > ----------------------------------                           
+         > |   ${"\u001B[36m"}10) ${"\u001B[32m"}💾 Save Notes${"\u001B[34m"}            |         
+         > |   ${"\u001B[36m"}11) ${"\u001B[32m"}📁 Load Notes${"\u001B[34m"}            |   
          > ----------------------------------
-         > | NOTE MENU                      |
-         > |   1) Add a note                |
-         > |   2) List all notes            |
-         > |   3) Update a note             |
-         > |   4) Delete a note             |
-         > |   5) Archive Note              |
-         > |   6) Search Note               |
-         > |   10) Save Notes               |
-         > |   11) Load Notes               |
-         > ----------------------------------
-         > |   0) Exit                      |
+         > |   ${"\u001B[36m"}0) ${"\u001B[32m"}🚪 Exit${"\u001B[34m"}                   |      
          > ----------------------------------
          > ==>> """.trimMargin(">"))
 }
